@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+
+    justify-content: center;
+    align-items: center;
+    background: rgb(0, 0, 0, 0.5);
+}
+
+form {
+    background: whitesmoke;
+    opacity: 1;
+    min-height: 20em;
+    width: 25em;
+
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.center>div {
+    margin-top: 1em;
+    height: 2.5em;
+    width: 7em;
+}
+
+h3 {
+    color: limegreen;
+}
+
+li {
+    color: red;
+}

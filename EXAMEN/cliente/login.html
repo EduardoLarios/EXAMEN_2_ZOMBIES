@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #app {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+
+            justify-content: center;
+            align-items: center;
+            background: rgb(0, 0, 0, 0.5);
+        }
+
+        form {
+            background: whitesmoke;
+            opacity: 1;
+            min-height: 20em;
+            width: 25em;
+
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .center>div {
+            margin-top: 1em;
+            height: 2.5em;
+            width: 7em;
+        }
+
+        h3 {
+            color: limegreen;
+        }
+
+        li {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="app">
+        <form v-on:keyup.enter="login">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">
+                    Email address
+                </label>
+                <input type="email" class="form-control" v-model="email" :placeholder="placeholderEmail">
+                <div class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">
+                    Password
+                </label>
+                <input type="password" class="form-control" v-model="password" :placeholder="placeholderPass">
+            </div>
+            <div class="center">
+                <h3>{{ response }}</h3>
+            </div>
+            <div v-if="errors.length > 0" class="form-text">
+                <ul>
+                    <li v-for="(error) in errors" :key="error">
+                        {{ error.message }}
+                    </li>
+                </ul>
+            </div>
+            <div class="center">
+                <div v-on:click="login" class="btn btn-primary">Login</div>
+            </div>
+        </form>
+    </section>
+
+    <script src="login.js"></script>
+</body>
+
+</html>
