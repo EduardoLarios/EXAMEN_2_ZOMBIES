@@ -1,6 +1,5 @@
-const { createApp } = Vue;
-const app = createApp({
-    name: "Login",
+var app = new Vue({
+    el: "#app",
     data() {
         return {
             email: "",
@@ -27,7 +26,7 @@ const app = createApp({
         async login() {
             const { email, password } = this;
             const errors = this.validate(email, password);
-            if (errors.length > 0) {
+            if (errors.length) {
                 this.errors = errors;
                 return;
             }
@@ -48,4 +47,3 @@ const app = createApp({
         }
     }
 });
-app.mount('#app')

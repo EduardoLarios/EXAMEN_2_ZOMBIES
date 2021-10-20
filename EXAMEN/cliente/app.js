@@ -1,10 +1,8 @@
-const { createApp } = Vue;
-const app = createApp({
+const app = new Vue({
     name: "Login",
-    data() {
+    data () {
         return {
-            nombreCompleto: "",
-
+            nombreCompleto: ""
         }
     }
 });

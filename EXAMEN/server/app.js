@@ -1,4 +1,6 @@
-const { tryLogin} = require("./database");
+const cookieParser = require('cookie-parser');
+const { tryLogin } = require("./database");
+const { Usuario } = require("./models");
 const express = require("express");
 const { join } = require("path");
 
@@ -10,6 +12,7 @@ const port = 8080;
 app.listen(port, () => console.log(`Started on port ${port}`));
 app.use(express.static(cliente));
 app.use(express.json());
+app.use(cookieParser());
 
 app.get("/login", (req, res) => {
     const user = req && req.cookies && req.cookies.user;
@@ -18,7 +21,6 @@ app.get("/login", (req, res) => {
     } else {
         res.sendFile(join(root, cliente, "login.html"));
     } 
-
 })
 
 app.post("/api/login", async (req, res) => {
@@ -30,7 +32,8 @@ app.post("/api/login", async (req, res) => {
         res.send(errors);
     }
 
-    const dbUser = await tryLogin(user.email, user.password);
+    // const dbUser = await tryLogin(user.email, user.password);
+    const dbUser = new Usuario(0, user.email, user.password);
     if (!dbUser) {
         res.send({ message: "user doesn't exist", action: "login" })
     } else {
@@ -41,9 +44,10 @@ app.post("/api/login", async (req, res) => {
 })
 
 app.get("/app", (req, res) => {
+    console.log(req.cookies);
     const user = req && req.cookies && req.cookies.user;
     if (!user) {
-        res.sendfile(joing(root, cliente, "login.html"));
+        res.sendFile(join(root, cliente, "login.html"));
     } else {
         res.sendFile(join(root, cliente, "app.html"));
     }
